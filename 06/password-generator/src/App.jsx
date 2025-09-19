@@ -1,0 +1,56 @@
+import React, { useState } from 'react';
+import {LockKeyhole, KeyRound, Copy} from 'lucide-react';
+import {ToastContainer, toast} from 'react-toastify';
+const App=()=> {
+  const pattern = 'AZEFz01pqrstuMN345678okxa2Yvw!@#$BCnJwyXbcOPQRHI9lm$%KLghiST!@#defDUVWGj%&_?-~'
+  const [password, setPassword] = useState('');
+
+  const generatePassword = (e) =>{
+    e.preventDefault();
+    let p = ''
+    const len = e.target[0].value
+    const patternLength = pattern.length-1
+    for(let i=0; i< len; i++)
+      {
+        // const randomIndex = Math.floor(Math.random() * patternLength)
+        const random1Index = Math.floor(Math.random() * patternLength)
+        const random2Index = Math.floor(Math.random() * random1Index)
+        const random3Index = Math.floor(Math.random() * random2Index)
+        p = p + pattern[random3Index] 
+      }
+      setPassword(p)
+      
+  }
+
+  const copyPassword = () => {
+    navigator.clipboard.writeText(password)
+    toast.success('Password Copied')
+  }
+
+  return (
+    <div className="min-h-screen bg-black/90 flex items-center justify-center">
+      <div className="flex flex-col items-center gap-3 text-4xl p-16 w-lg rounded-lg bg-white/70  hover:scale-101 duration-400 transition-transform font-bold">
+        <LockKeyhole className='text-black/100 w-12 h-12' /> 
+        <h1 className='text-3xl font-bold '>Password Generator</h1>
+        <form className='w-full  rounded-lg bg-black/90 mt-6 p-5 flex flex-col gap-4'  onSubmit={generatePassword} >
+          <input input='number' placeholder="Enter Password Length" className=" bg-white/70 text-black border-2 border-black/70 rounded-lg p-2 text-block/100 w-full focus:outline-none focus:border-black/100 focus:bg-white/100 focus:ring-1 focus:ring-black/100 text-lg font-semibold" />
+          <button className=' flex items-center gap-2 bg-black/90 text-white border-2 border-white/70 rounded-lg p-2 text-white/100 w-full hover:bg-green-500 hover:border-black/100 hover:text-white/100 focus:outline-none focus:ring-1 focus:ring-black/100 text-lg justify-center font-semibold '>
+            <KeyRound className='text-white' />
+            Generate Strong Password
+          </button>
+        </form>
+        {
+          password !== '' && 
+        
+        <div className='w-full bg-black/90 text-white border-2 border-white/70 rounded-lg p-4 text-white/100 flex justify-between items-center text-lg font-semibold mt-4'>
+          <p>{password}</p>
+          <Copy className='text-white hover:scale-110 transition-transform duration-100' onClick={copyPassword} />
+        </div>
+      }       
+      </div>
+      <ToastContainer />
+    </div>
+  );
+}
+
+export default App;
