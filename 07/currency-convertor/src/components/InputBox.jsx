@@ -19,12 +19,13 @@ const InputBox = ({
                 <label htmlFor='currency' className='text-black/40 mb-2 inline-block '>{label}</label>
                 <input type="number"
                 id={id}
-                    className='outline-none w-full bg-transparent border border-black/20 rounded-md p-2'
+                    className='outline-none w-full bg-transparent py-1.5'
                     placeholder='Amount'
                     disabled={amountDisabled}
                     value={amount}
                     onChange={(e)=>onAmountChange && onAmountChange(Number(e.target.value))}
                 />
+            </div>
             <div className='w-1/2 flex flex-wrap justify-end text-right'>
                 <p className='text-black/40 mb-2 w-full'>Currency Type</p>
                 <select className=' outline-none w-full bg-transparent border border-black/20 rounded-md p-2'
@@ -37,7 +38,6 @@ const InputBox = ({
                     ))}
                 </select>
             </div>
-           </div>
         </div>
     </div>
   );
