@@ -50,7 +50,7 @@ const App =() => {
 	}, [num, type])
 
   return (
-	<div className="min-h-screen bg-indigo-950">
+	<div className="min-h-screen bg-white/90">
 		<div className="w-9/12 mx-auto py-12 space-y-8"> 
 			<div className="flex justify-between p-6 rounded-xl"
 				style={
@@ -82,7 +82,7 @@ const App =() => {
 				gradients.map((item, index)=>(
 					<div key={index} className="h-[180px]  rounded-xl relative" style={{background: item.gradient}}>
 					
-					<button onClick={() => onCopy(item.css)} className="bg-black/75 hover:bg-black text-white rounded absolute bottom-3 right-3 text-[10px] py-1 px-2 ">Copy</button>
+					<button onClick={() => onCopy(item.css)} className="bg-black/75 hover:bg-black text-white rounded hover:scale-105 cursor-pointer absolute bottom-3 right-3 text-[10px] py-1 px-2 ">Copy</button>
 
 				</div>
 				))
